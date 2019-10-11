@@ -1,0 +1,172 @@
+############################################################################################# 
+#   Name                                           : MoneyChangerIBD_CustSearch.scr
+#   Date                                	       : 31-Mar-2017
+#   Description                                    : Script for custom searcher
+#   Input                                          : None
+#   Output                                         : None
+#   Author                                         : 
+#   Called Script                 	   	           : None
+#   Calling Script               		           : None
+#   Original Script Design			   : Gagandeep
+#   Reference                                      : None
+#   Modification History 		     	           : 
+#   <Serial No.>       <Date>                 <Author Name>               <Description>    
+#       2             31-Mar-2017    	    Moe Htet Kyaw Kyaw	          Initial Draft
+#############################################################################################
+
+#####################################################
+#Start of script
+#####################################################
+<--START
+#TRACE ON
+#####################################################
+# Calling script for creating repository and classes
+#####################################################
+CALL("createRepClass.scr")
+
+#####################################################
+# Setting the error message to blank
+#####################################################
+CUST.DATA.tempErrMessage   = ""
+sv_t = 0
+
+#####################################################
+# Query to count the number of records existing in DB 
+#####################################################
+sv_s = "recCount|"
+sv_s = sv_s + " SELECT  COUNT(USER_ID)"
+sv_s = sv_s + " FROM 	TBAADM.UPR"
+sv_s = sv_s + " WHERE  	user_work_class = '221'"
+sv_s = sv_s + " AND	DEL_FLG = 'N'"
+sv_s = sv_s + " AND     ENTITY_CRE_FLG = 'Y'"
+sv_s = sv_s + " AND 	HOME_BANK_ID   = '01'"
+
+print(sv_s)
+#####################################################
+# Executing the query using the dbSelect userhook
+#####################################################
+BANCS.INPARAM.BINDVARS = BANCS.STDIN.contextBankId + "|" +  BANCS.STDIN.contextBankId
+sv_d = urhk_dbSelectWithBind(sv_s)
+
+#####################################################
+# Checking the success of select statement execution.
+#####################################################
+IF(sv_d == 0) THEN
+#{
+	#####################################################
+	# Fetch the record count and send it to frontend.
+	#####################################################
+	CUST.DATA.recCount = BANCS.OUTPARAM.recCount
+	sv_a = urhk_SetOrbOut("count|" + CUST.DATA.recCount)
+			
+	#####################################################
+	# If urhk_SetOrbOut fails then exiting script
+	#####################################################
+	IF(sv_a != 0) THEN
+	#{
+		CUST.DATA.tempErrMessage  = "No Records Present"
+		GOTO ENDOFSCRIPT
+	#}
+	ENDIF
+#}
+ELSE
+#{
+	CUST.DATA.retVal = "N"
+	GOTO ENDOFSCRIPT
+#}
+ENDIF
+#sv_a = urhk_SetOrbOut("count |20")
+#####################################################
+# Fetching the list of various fields from the table.
+#####################################################
+sv_s = "UserID, SOL_ID|"
+sv_s = sv_s + " SELECT  USER_ID, SOL_ID"
+sv_s = sv_s + " FROM 	TBAADM.UPR"
+sv_s = sv_s + " WHERE 	user_work_class = '221'"
+sv_s = sv_s + "	AND     DEL_FLG = 'N'"
+sv_s = sv_s + " AND     ENTITY_CRE_FLG = 'Y'"
+sv_s = sv_s + " AND     HOME_BANK_ID  = '01'"
+
+print(sv_s)
+#################################################
+#Opening the cursor to fetch the list of records.
+#################################################
+BANCS.INPARAM.BINDVARS = BANCS.STDIN.contextBankId + "|" +  BANCS.STDIN.contextBankId
+sv_d = urhk_dbCursorOpenWithBind(sv_s)
+
+#################################################
+#Exiting If cursor can't be open
+#################################################
+IF (sv_d != 0)THEN
+#{
+	CUST.DATA.retVal = "N"
+	CUST.DATA.tempErrMessage  = "No record exists in RCT"
+	GOTO ENDOFSCRIPT
+#}
+ENDIF
+
+CUST.DATA.mainCurNum = BANCS.OUTPARAM.DB_CURSOR_NUMBER
+
+###################################################
+# Fetch records from cursor.
+###################################################
+sv_c = urhk_dbCursorFetch(CUST.DATA.mainCurNum)
+
+##################################################
+# If fetch is not successful closing the cursor
+# and exiting
+##################################################
+IF (sv_c!= 0)THEN
+#{
+	CUST.DATA.retVal = "N"
+	CUST.DATA.tempErrMessage  = "Fetch not successful"
+	sv_c = urhk_dbCursorClose(CUST.DATA.mainCurNum)
+	GOTO ENDOFSCRIPT
+#}
+ENDIF
+
+####################################################################
+#Writing a loop to fetch all the records from the table using cursor.
+####################################################################
+WHILE(sv_c == 0)
+#{
+	sv_t = sv_t + 1
+	sv_a = BANCS.OUTPARAM.UserID
+	sv_b = BANCS.OUTPARAM.SOL_ID	
+
+	sv_p = "UserID_" + FORMAT$(sv_t,"%d") + "|" + sv_a
+	sv_r = urhk_SetOrbOut(sv_p)
+
+	sv_m = "SOL_ID_" + FORMAT$(sv_t,"%d") + "|" + sv_b
+	print(sv_m)
+	sv_n = urhk_SetOrbOut(sv_m)
+	print(sv_n)
+
+	sv_c = urhk_dbCursorFetch(CUST.DATA.mainCurNum)
+#}
+DO
+
+####################################################################
+#Closing the cursor
+####################################################################
+sv_c = urhk_dbCursorClose(CUST.DATA.mainCurNum)
+
+####################################################################
+# Checking if closing is successful
+####################################################################
+IF(sv_c != 0)THEN
+#{
+	CUST.DATA.retVal = "F"
+	CUST.DATA.tmpErrMessage = "Closing of cursor Not Successful"
+	GOTO ENDOFSCRIPT
+#}
+ENDIF
+
+ENDOFSCRIPT:
+
+EXITSCRIPT
+####################################################################
+# End of script
+####################################################################
+#TRACE OFF
+END-->

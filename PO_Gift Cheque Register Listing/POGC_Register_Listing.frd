@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><finrptTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="POGC_Register_Listing" shortDesc="POGC_Register_Listing" xsi:noNamespaceSchemaLocation="http://www.infosys.com/finacle/fss/schema/metadata/finrpt/finrpt.xsd">
+	<custValData>
+		<inputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTCRIT" userFriendlyName="FINRPT Criteria Fields">
+					<reposField name="EndDate" userFriendlyName="EndDate">
+						<description>EndDate</description>
+					</reposField>
+					<reposField name="StartDate" userFriendlyName="StartDate">
+						<description>StartDate</description>
+					</reposField>
+					<reposField name="BranchCode" userFriendlyName="BranchCode">
+						<description>BranchCode</description>
+					</reposField>
+					<reposField name="DDType" userFriendlyName="DD Type">
+						<description>DD Type</description>
+					</reposField>
+					<reposField name="Currency" userFriendlyName="Currency">
+						<description>Currency</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</inputRepositories>
+		<outputRepositories/>
+	</custValData>
+	<custReposData>
+		<inputRepositories/>
+		<outputRepositories/>
+	</custReposData>
+	<defPopData>
+		<inputRepositories/>
+		<outputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTDEF" userFriendlyName="Default Population Parameters">
+					<reposField name="EndDate" userFriendlyName="EndDate">
+						<description>EndDate</description>
+					</reposField>
+					<reposField name="StartDate" userFriendlyName="StartDate">
+						<description>StartDate</description>
+					</reposField>
+					<reposField name="BranchCode" userFriendlyName="BranchCode">
+						<description>BranchCode</description>
+					</reposField>
+					<reposField name="DDType" userFriendlyName="DD Type">
+						<description>DD Type</description>
+					</reposField>
+					<reposField name="Currency" userFriendlyName="Currency">
+						<description>Currency</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</outputRepositories>
+	</defPopData>
+</finrptTemplate>

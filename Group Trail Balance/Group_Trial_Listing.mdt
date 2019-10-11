@@ -1,0 +1,7 @@
+V2
+dd-MM-yyyy
+GREG
+P_vi_EOD_DATEEOD DateDATEDEFAULT810CONSTANTNULLNULLNN
+P_vi_curCurrencySTRINGDEFAULT0100CONSTANTNULLPRODUCTCntry_Crncy_ListNNN
+P_vi_cur_typeCurrency TypeSTRINGSETHome CurrencySource CurrencyAll CurrencyAll Currency (FCY)CONSTANTNULLNULLNN
+P_vi_SOL_IDBranch CodeSTRINGDEFAULT0100CONSTANTNULLPRODUCTSolID_ListNNN

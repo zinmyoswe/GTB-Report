@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Ledger_Balance_Listing_By_Grade"
+
+		 language="groovy"		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="595"
+		 pageHeight="842"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 scriptletClass="com.infy.finacle.finrpt.FinScriptlet"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="2" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<import value="com.infy.finacle.finrpt.*" />
+	<import value="com.infy.finacle.finrpt.utils.*" />
+	<import value="com.infy.finacle.finrpt.ireport.*" />
+
+	<parameter name="FIN_REPORT_TYPE" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[fc|3]]></parameterDescription>
+	</parameter>
+	<parameter name="FINRPT_DEFAULT_FORMAT" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[SPBX Proc]]></parameterDescription>
+	</parameter>
+	<parameter name="FIN_REPORT_DESC" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Ledger Balance Listing By Grade]]></parameterDescription>
+	</parameter>
+	<parameter name="FIN_ALREADY_SORTED" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[N]]></parameterDescription>
+	</parameter>
+	<parameter name="FIN_REPOS_LIST" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FIN_REPOS_FILE" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Finacle Dynamic Repository]]></parameterDescription>
+	</parameter>
+	<parameter name="FIN_DB_CONN" isForPrompting="false" class="java.sql.Connection">
+		<parameterDescription><![CDATA[FINACLE SYSTEM PARAMETER. DO NOT CHANGE]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FIN_IMG_PATH" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA["../images"]]></parameterDescription>
+		<defaultValueExpression ><![CDATA["../images"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FIN_JASPER_PATH" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="FIN_SESSION_ID" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="FIN_TEMPLATE_PATH" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA["../jrxml"]]></parameterDescription>
+		<defaultValueExpression ><![CDATA["../jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FIN_BANKREPOS_PARAM" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="FIN_APP_UTIL" isForPrompting="false" class="com.infy.finacle.finrpt.utils.FinAppUtil"/>
+	<parameter name="FIN_REPORT_TO" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report To]]></parameterDescription>
+	</parameter>
+	<parameter name="P_Date" isForPrompting="true" class="java.lang.String">
+		<parameterDescription><![CDATA[Date@DBQUERY]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_START_AMT" isForPrompting="true" class="java.lang.String">
+		<parameterDescription><![CDATA[Start Amount@DBQUERY]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_END_AMT" isForPrompting="true" class="java.lang.String">
+		<parameterDescription><![CDATA[End Amount@DBQUERY]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_CURRENCY" isForPrompting="true" class="java.lang.String">
+		<parameterDescription><![CDATA[Currency@DBQUERY]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_SCHEME_TYPE" isForPrompting="true" class="java.lang.String">
+		<parameterDescription><![CDATA[Scheme Type@DBQUERY]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_SCHEME_CODE" isForPrompting="true" class="java.lang.String">
+		<parameterDescription><![CDATA[Scheme Code@DBQUERY]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_SOL_ID" isForPrompting="true" class="java.lang.String">
+		<parameterDescription><![CDATA[Branch Code@DBQUERY]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FIN_SER_FINQUERY" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[@DBQUERY]]></parameterDescription>
+		<defaultValueExpression ><![CDATA["CUSTOM|FIN_LEDGER_BALANCE_BY_GRADE.FIN_LEDGER_BALANCE_BY_GRADE%3%CUSTOM::|where%Date%=%$P{P_Date}%Parameter%Date::and%START_AMT%=%$P{P_START_AMT}%Parameter%String::and%END_AMT%=%$P{P_END_AMT}%Parameter%String::and%CURRENCY%=%$P{P_CURRENCY}%Parameter%String::and%SCHEME_TYPE%=%$P{P_SCHEME_TYPE}%Parameter%String::and%SCHEME_CODE%=%$P{P_SCHEME_CODE}%Parameter%String::and%SOL_ID%=%$P{P_SOL_ID}%Parameter%String::|INP_STR%1%java.lang.String%VARCHAR2::OUT_RETCODE%4%java.math.BigDecimal%NUMBER::OUT_REC%4%java.lang.String%VARCHAR2::|P_Date%java.sql.Timestamp%10%!NULL!%Date@DBQUERY%NONE%java.sql.Timestamp!@!DEFAULT!@!8!@!10%CONSTANT%N%N::P_START_AMT%java.lang.String%100%!NULL!%Start Amount@DBQUERY%NONE%java.lang.String!@!DEFAULT!@!0!@!100%CONSTANT%N%N::P_END_AMT%java.lang.String%100%!NULL!%End Amount@DBQUERY%NONE%java.lang.String!@!DEFAULT!@!0!@!100%CONSTANT%N%N::P_CURRENCY%java.lang.String%100%!NULL!%Currency@DBQUERY%PRODUCT!@!Cntry_Crncy_List#@#N%java.lang.String!@!DEFAULT!@!0!@!100%CONSTANT%N%N::P_SCHEME_TYPE%java.lang.String%100%!NULL!%Scheme Type@DBQUERY%PRODUCT!@!Schm_Type_List#@#N%java.lang.String!@!DEFAULT!@!0!@!100%CONSTANT%N%N::P_SCHEME_CODE%java.lang.String%100%!NULL!%Scheme Code@DBQUERY%PRODUCT!@!SchemeCodes_List1#@#N%java.lang.String!@!DEFAULT!@!0!@!100%CONSTANT%N%N::P_SOL_ID%java.lang.String%100%!NULL!%Branch Code@DBQUERY%PRODUCT!@!SolID_List#@#N%java.lang.String!@!DEFAULT!@!0!@!100%CONSTANT%N%N::|{call CUSTOM.FIN_LEDGER_BALANCE_BY_GRADE.FIN_LEDGER_BALANCE_BY_GRADE( $P{FIN_INP_STR}  , $P{FIN_OUT_RETCODE} , $P{FIN_OUT_REC} ) } |{call CUSTOM.FIN_LEDGER_BALANCE_BY_GRADE.FIN_LEDGER_BALANCE_BY_GRADE( $P{FIN_INP_STR}  , $P{FIN_OUT_RETCODE} , $P{FIN_OUT_REC} ) } |false"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FIN_INP_STR" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Parameter to store the input parameters]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[$P{P_Date} + "!" +$P{P_START_AMT} + "!" +$P{P_END_AMT} + "!" +$P{P_CURRENCY} + "!" +$P{P_SCHEME_TYPE} + "!" +$P{P_SCHEME_CODE} + "!" +$P{P_SOL_ID}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FIN_OUT_RETCODE" isForPrompting="false" class="java.math.BigDecimal">
+		<parameterDescription><![CDATA[FINRPT Integer parameter used for storing the return code of Procedure]]></parameterDescription>
+	</parameter>
+	<parameter name="FIN_OUT_REC" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[FINRPT String parameter used for storing the return value of Procedure]]></parameterDescription>
+	</parameter>
+	<parameter name="FIN_SORT_LIST" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[0^A^S]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[$P{REPORT_DATA_SOURCE}.doSort("0^A^S")]]></defaultValueExpression>
+	</parameter>
+	<queryString language="FIN_SPBX_PROC"><![CDATA[{call CUSTOM.FIN_LEDGER_BALANCE_BY_GRADE.FIN_LEDGER_BALANCE_BY_GRADE( $P{FIN_INP_STR}  , $P{FIN_OUT_RETCODE} , $P{FIN_OUT_REC} ) }]]></queryString>
+
+	<field name="accountNo" class="java.lang.String">
+		<fieldDescription><![CDATA[0]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[1]]></fieldDescription>
+	</field>
+	<field name="balanceAmt" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[2]]></fieldDescription>
+	</field>
+	<field name="BranchName" class="java.lang.String">
+		<fieldDescription><![CDATA[3]]></fieldDescription>
+	</field>
+	<field name="BankAddress" class="java.lang.String">
+		<fieldDescription><![CDATA[4]]></fieldDescription>
+	</field>
+	<field name="BankPhone" class="java.lang.String">
+		<fieldDescription><![CDATA[5]]></fieldDescription>
+	</field>
+	<field name="BankFax" class="java.lang.String">
+		<fieldDescription><![CDATA[6]]></fieldDescription>
+	</field>
+	<field name="Project_Bank_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[7]]></fieldDescription>
+	</field>
+	<field name="Image_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[8]]></fieldDescription>
+	</field>
+
+	<variable name="FIN_REPOSITORY" class="com.infy.finacle.finrpt.FinRepository" resetType="Report" calculation="System">
+	</variable>
+	<variable name="TODAY" class="java.util.Date" resetType="Report" calculation="System">
+		<variableExpression><![CDATA[DateUtil.today()]]></variableExpression>
+		<initialValueExpression><![CDATA[DateUtil.today()]]></initialValueExpression>
+	</variable>
+	<variable name="FIN_DB_CONN" class="java.sql.Connection" resetType="Report" calculation="System">
+		<initialValueExpression><![CDATA[null]]></initialValueExpression>
+	</variable>
+	<variable name="GrandTotal_Balance_Amount" class="java.math.BigDecimal" resetType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{balanceAmt}== 0 || $F{balanceAmt} == null  ? 0.00 : $F{balanceAmt}]]></variableExpression>
+	</variable>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="70"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="187"
+						y="0"
+						width="310"
+						height="20"
+						key="textField-1"
+						stretchType="RelativeToTallestObject"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font fontName="Monospaced" pdfFontName="Helvetica-Bold" size="14" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Project_Bank_Name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="187"
+						y="35"
+						width="40"
+						height="15"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Monospaced" size="10"/>
+					</textElement>
+				<text><![CDATA[Ph : -]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="187"
+						y="50"
+						width="40"
+						height="15"
+						key="staticText-2"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Monospaced" size="10"/>
+					</textElement>
+				<text><![CDATA[Fax : -]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="228"
+						y="35"
+						width="160"
+						height="15"
+						key="textField-2"/>
+					<box></box>
+					<textElement>
+						<font fontName="Monospaced"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{BankPhone}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="228"
+						y="50"
+						width="160"
+						height="15"
+						key="textField-3"/>
+					<box></box>
+					<textElement>
+						<font fontName="Monospaced"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{BankFax}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="187"
+						y="20"
+						width="300"
+						height="15"
+						key="textField-4"/>
+					<box></box>
+					<textElement>
+						<font fontName="Monospaced" size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{BankAddress}]]></textFieldExpression>
+				</textField>
+				<image  scaleImage="RetainShape" vAlign="Middle" hAlign="Center" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="105"
+						y="0"
+						width="80"
+						height="70"
+						key="image-1"/>
+					<box></box>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA[FinUtil.getImage($F{Image_Name},$P{FIN_IMG_PATH})]]></imageExpression>
+				</image>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="50"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="530"
+						height="20"
+						key="textField-5"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Monospaced" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$P{P_SCHEME_TYPE}.toUpperCase() == "SBA" ?
+($P{P_SCHEME_CODE}.toUpperCase() == "SAREG" ?
+ "Listing For Ledger Balance (Saving) as at " +$P{P_Date}:
+ "Listing For Ledger Balance (Special Saving) as at " + $P{P_Date}) :
+$P{P_SCHEME_TYPE}.toUpperCase() == "CAA" ?
+ ($P{P_SCHEME_CODE}.toUpperCase() == "AGDOD" ?
+ "Listing For Ledger Balance (Over Draft) as at " +$P{P_Date} :
+ "Listing For Ledger Balance (Current Account) as at " + $P{P_Date}) :
+$P{P_SCHEME_TYPE}.toUpperCase() == "LAA" ?
+ ($P{P_SCHEME_CODE}.toUpperCase() == "AGDNL" ?
+ "Listing For Ledger Balance (Normal Loan) as at " + $P{P_Date} : 
+$P{P_SCHEME_CODE}.toUpperCase() == "AGDHP" ?
+ "Listing For Ledger Balance (Hire Purchase) as at " + $P{P_Date}  :
+ "Listing For Ledger Balance (Staff Loan) as at " + $P{P_Date} ) :
+$P{P_SCHEME_TYPE}.toUpperCase() == "ODA" ?
+"Listing For Ledger Balance (Office Account) as at " +$P{P_Date} :
+($P{P_SCHEME_TYPE}.toUpperCase() == "OAB" || $P{P_SCHEME_TYPE}.toUpperCase() == "OAP")?
+"Listing For Ledger Balance (Office Account) as at " + $P{P_Date}:
+ "Listing For Ledger Balance (Term Deposit) as at " + $P{P_Date}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="334"
+						y="27"
+						width="92"
+						height="18"
+						key="staticText-3"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Monospaced" pdfFontName="Helvetica" size="10" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Printed Date .]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="dd-MM-yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="426"
+						y="27"
+						width="103"
+						height="18"
+						key="textField-6"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Monospaced" pdfFontName="Helvetica" size="10" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$V{TODAY}]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="40"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="dd MMMMM, yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="220"
+						height="20"
+						key="textField-7"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[" Currency : "+$P{P_CURRENCY}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="0"
+						y="20"
+						width="40"
+						height="20"
+						key="staticText-4"
+						positionType="Float"/>
+					<box>					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Sr No.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="40"
+						y="20"
+						width="120"
+						height="20"
+						key="staticText-5"/>
+					<box>					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Account No.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="160"
+						y="20"
+						width="225"
+						height="20"
+						key="staticText-6"/>
+					<box>					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="385"
+						y="20"
+						width="150"
+						height="20"
+						key="staticText-7"/>
+					<box>					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Balance]]></text>
+				</staticText>
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="25"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="40"
+						height="25"
+						key="textField-8"
+						positionType="Float"/>
+					<box leftPadding="3" rightPadding="3">					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="40"
+						y="0"
+						width="120"
+						height="25"
+						key="textField-9"
+						stretchType="RelativeToTallestObject"/>
+					<box leftPadding="3" rightPadding="3">					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{accountNo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="160"
+						y="0"
+						width="225"
+						height="25"
+						key="textField-10"
+						stretchType="RelativeToTallestObject"/>
+					<box leftPadding="3" rightPadding="3">					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{name}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="385"
+						y="0"
+						width="150"
+						height="25"
+						key="textField-11"
+						stretchType="RelativeToTallestObject"/>
+					<box leftPadding="3" rightPadding="3">					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{balanceAmt}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="41"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="411"
+						y="10"
+						width="61"
+						height="20"
+						key="staticText-8"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+				<text><![CDATA[Page No.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="481"
+						y="10"
+						width="50"
+						height="20"
+						key="textField-12"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="50"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="30"
+						y="29"
+						width="30"
+						height="20"
+						key="staticText-9"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Total(]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="64"
+						y="29"
+						width="30"
+						height="20"
+						key="textField-13"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="99"
+						y="29"
+						width="100"
+						height="20"
+						key="staticText-10"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[)Records Listed.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="0"
+						y="0"
+						width="385"
+						height="25"
+						key="staticText-11"/>
+					<box>					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Grand Total]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="385"
+						y="0"
+						width="150"
+						height="25"
+						key="textField-14"
+						stretchType="RelativeToTallestObject"/>
+					<box leftPadding="3" rightPadding="3">					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$V{GrandTotal_Balance_Amount}]]></textFieldExpression>
+				</textField>
+			</band>
+		</summary>
+</jasperReport>

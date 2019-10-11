@@ -1,0 +1,6 @@
+V2
+dd-MM-yyyy
+GREG
+TransactionDateTransaction DateDATEDEFAULT810CONSTANTNULLNULLNN
+UserIDUserIDSTRINGDEFAULT0100CONSTANTNULLCUSTOMUserID|SOL_IDMoneyChangerIBD_CustSearch.scrUserIDUserID|SOL_ID1NN
+BuyingSellingOptionSTRINGSETBuyingSellingCONSTANTNULLNULLNN

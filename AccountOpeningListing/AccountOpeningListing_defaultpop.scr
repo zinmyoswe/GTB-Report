@@ -1,0 +1,24 @@
+<--start
+
+#trace on
+# sv_r = urhk_b2k_printrepos("BANCS")
+
+#BANCS.FINRPTDEF.P_BranchCode = BANCS.STDIN.mySolId + "|N|Y|Y"
+
+#BANCS.FINRPTDEF.P_ROLE_ID =  BANCS.STDIN.roleId + "MANAGER|N|N|N"
+
+IF (BANCS.STDIN.mySolId == "10000") THEN
+#{
+	BANCS.FINRPTDEF.P_BranchCode = BANCS.STDIN.mySolId + "|N|N|N"
+
+	
+#}
+ELSE
+#{
+	BANCS.FINRPTDEF.P_BranchCode = BANCS.STDIN.mySolId + "|N|Y|Y"
+#}
+ENDIF
+
+#trace off
+
+end-->

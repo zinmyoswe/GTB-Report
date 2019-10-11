@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><finrptTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="HP_Payment_Listing" shortDesc="HP_Payment_Listing" xsi:noNamespaceSchemaLocation="http://www.infosys.com/finacle/fss/schema/metadata/finrpt/finrpt.xsd">
+	<custValData>
+		<inputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTCRIT" userFriendlyName="FINRPT Criteria Fields">
+					<reposField name="P_vi_date" userFriendlyName="Date">
+						<description>Date</description>
+					</reposField>
+					<reposField name="P_vi_loanType" userFriendlyName="Loan_Type">
+						<description>Loan_Type</description>
+					</reposField>
+					<reposField name="P_vi_SchemeCode" userFriendlyName="Scheme_Code">
+						<description>Scheme_Code</description>
+					</reposField>
+					<reposField name="P_vi_branchId" userFriendlyName="Branch_Code">
+						<description>Branch_Code</description>
+					</reposField>
+					<reposField name="P_vi_SchemeType" userFriendlyName="Scheme_Type">
+						<description>Scheme_Type</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</inputRepositories>
+		<outputRepositories/>
+	</custValData>
+	<custReposData>
+		<inputRepositories/>
+		<outputRepositories/>
+	</custReposData>
+	<defPopData>
+		<inputRepositories/>
+		<outputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTDEF" userFriendlyName="Default Population Parameters">
+					<reposField name="P_vi_date" userFriendlyName="Date">
+						<description>Date</description>
+					</reposField>
+					<reposField name="P_vi_loanType" userFriendlyName="Loan_Type">
+						<description>Loan_Type</description>
+					</reposField>
+					<reposField name="P_vi_SchemeCode" userFriendlyName="Scheme_Code">
+						<description>Scheme_Code</description>
+					</reposField>
+					<reposField name="P_vi_branchId" userFriendlyName="Branch_Code">
+						<description>Branch_Code</description>
+					</reposField>
+					<reposField name="P_vi_SchemeType" userFriendlyName="Scheme_Type">
+						<description>Scheme_Type</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</outputRepositories>
+	</defPopData>
+</finrptTemplate>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><finrptTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="POGC_Outstanding_Listing" shortDesc="POGC_Outstanding_Listing" xsi:noNamespaceSchemaLocation="http://www.infosys.com/finacle/fss/schema/metadata/finrpt/finrpt.xsd">
+	<custValData>
+		<inputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTCRIT" userFriendlyName="FINRPT Criteria Fields">
+					<reposField name="DDType" userFriendlyName="DD Type">
+						<description>DD Type</description>
+					</reposField>
+					<reposField name="P_BranchCode" userFriendlyName="Branch Code">
+						<description>Branch Code</description>
+					</reposField>
+					<reposField name="Currency" userFriendlyName="Currency">
+						<description>Currency</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</inputRepositories>
+		<outputRepositories/>
+	</custValData>
+	<custReposData>
+		<inputRepositories/>
+		<outputRepositories/>
+	</custReposData>
+	<defPopData>
+		<inputRepositories/>
+		<outputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTDEF" userFriendlyName="Default Population Parameters">
+					<reposField name="DDType" userFriendlyName="DD Type">
+						<description>DD Type</description>
+					</reposField>
+					<reposField name="P_BranchCode" userFriendlyName="Branch Code">
+						<description>Branch Code</description>
+					</reposField>
+					<reposField name="Currency" userFriendlyName="Currency">
+						<description>Currency</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</outputRepositories>
+	</defPopData>
+</finrptTemplate>

@@ -1,0 +1,8 @@
+V2
+dd-MM-yyyy
+GREG
+P_vi_TranDateTransaction DateDATEDEFAULT810CONSTANTNULLNULLNN
+P_vi_TypeTypeSTRINGSETExpenditureIncomeCONSTANTNULLNULLNN
+P_vi_currency_codeCurrency CodeSTRINGDEFAULT0100CONSTANTNULLPRODUCTCntry_Crncy_ListNNN
+P_vi_currency_typeCurrency TypeSTRINGSETHome CurrencySource CurrencyAll CurrencyAll Currency(FCY)CONSTANTNULLNULLNN
+P_vi_branch_codeBranch CodeSTRINGDEFAULT0100CONSTANTNULLPRODUCTSolID_ListNNN

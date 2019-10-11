@@ -1,0 +1,9 @@
+V2
+dd-MM-yyyy
+GREG
+P_vi_startDateStart DateDATEDEFAULT810CONSTANTNULLNULLNN
+P_vi_endDateEnd DateDATEDEFAULT810CONSTANTNULLNULLNN
+P_vi_currencyCurrencySTRINGDEFAULT0100CONSTANTNULLPRODUCTCntry_Crncy_ListNNN
+P_vi_schemeTypeScheme TypeSTRINGDEFAULT0100CONSTANTNULLPRODUCTSchm_Type_ListNNN
+P_vi_schemeCodeScheme CodeSTRINGDEFAULT0100CONSTANTNULLPRODUCTSchemeCodes_ListNNN
+P_vi_branchCodeBranch CodeSTRINGDEFAULT0100CONSTANTNULLPRODUCTSolID_ListNNN

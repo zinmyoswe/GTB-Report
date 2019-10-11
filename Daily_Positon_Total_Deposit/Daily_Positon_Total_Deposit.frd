@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><finrptTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Daily_Positon_Total_Deposit" shortDesc="Daily_Positon_Total_Deposit" xsi:noNamespaceSchemaLocation="http://www.infosys.com/finacle/fss/schema/metadata/finrpt/finrpt.xsd">
+	<custValData>
+		<inputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTCRIT" userFriendlyName="FINRPT Criteria Fields">
+					<reposField name="P_vi_Tran_date" userFriendlyName="Transaction Date">
+						<description>Transaction Date</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</inputRepositories>
+		<outputRepositories/>
+	</custValData>
+	<custReposData>
+		<inputRepositories/>
+		<outputRepositories/>
+	</custReposData>
+	<defPopData>
+		<inputRepositories/>
+		<outputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTDEF" userFriendlyName="Default Population Parameters">
+					<reposField name="P_vi_Tran_date" userFriendlyName="Transaction Date">
+						<description>Transaction Date</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</outputRepositories>
+	</defPopData>
+</finrptTemplate>

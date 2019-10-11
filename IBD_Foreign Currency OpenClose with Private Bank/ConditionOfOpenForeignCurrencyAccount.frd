@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><finrptTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ConditionOfOpenForeignCurrencyAccount" shortDesc="ConditionOfOpenForeignCurrencyAccount" xsi:noNamespaceSchemaLocation="http://www.infosys.com/finacle/fss/schema/metadata/finrpt/finrpt.xsd">
+	<custValData>
+		<inputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTCRIT" userFriendlyName="FINRPT Criteria Fields">
+					<reposField name="P_vi_Branchcode" userFriendlyName="Branch Code">
+						<description>Branch Code</description>
+					</reposField>
+					<reposField name="P_vi_CurrencyCode" userFriendlyName="Currency Code">
+						<description>Currency Code</description>
+					</reposField>
+					<reposField name="P_vi_startDate" userFriendlyName="Start Date">
+						<description>Start Date</description>
+					</reposField>
+					<reposField name="P_vi_endDate" userFriendlyName="End Date">
+						<description>End Date</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</inputRepositories>
+		<outputRepositories/>
+	</custValData>
+	<custReposData>
+		<inputRepositories/>
+		<outputRepositories/>
+	</custReposData>
+	<defPopData>
+		<inputRepositories/>
+		<outputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTDEF" userFriendlyName="Default Population Parameters">
+					<reposField name="P_vi_Branchcode" userFriendlyName="Branch Code">
+						<description>Branch Code</description>
+					</reposField>
+					<reposField name="P_vi_CurrencyCode" userFriendlyName="Currency Code">
+						<description>Currency Code</description>
+					</reposField>
+					<reposField name="P_vi_startDate" userFriendlyName="Start Date">
+						<description>Start Date</description>
+					</reposField>
+					<reposField name="P_vi_endDate" userFriendlyName="End Date">
+						<description>End Date</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</outputRepositories>
+	</defPopData>
+</finrptTemplate>

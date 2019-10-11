@@ -1,0 +1,8 @@
+V2
+dd-MM-yyyy
+GREG
+P_vi_dateDateDATEDEFAULT810CONSTANTNULLNULLNN
+P_vi_loanTypeLoan_TypeSTRINGSETOverDraftStaffLoanHire PurchaseDemand LoanCONSTANTNULLNULLNN
+P_vi_SchemeTypeScheme_TypeSTRINGDEFAULT0100CONSTANTNULLPRODUCTSchm_Type_ListNNN
+P_vi_SchemeCodeScheme_CodeSTRINGDEFAULT0100CONSTANTNULLPRODUCTHSRSCCODNNN
+P_vi_branchIdBranch_CodeSTRINGDEFAULT0100CONSTANTNULLPRODUCTSolID_ListNNN

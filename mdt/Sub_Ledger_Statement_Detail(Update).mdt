@@ -1,0 +1,8 @@
+V2
+dd-MM-yyyy
+GREG
+P_vi_startDateStart DateDATEDEFAULT810CONSTANTNULLNULLNN
+P_vi_endDateEnd DateDATEDEFAULT810CONSTANTNULLNULLNN
+P_vi_currencyTypeCurrency TypeSTRINGSETHome CurrencySource CurrencyAll CurrencyAll Currency(FCY)CONSTANTNULLNULLNN
+P_v_curCurrencySTRINGDEFAULT0100CONSTANTNULLPRODUCTCntry_Crncy_ListNNN
+P_vi_AccountNoAccount CodeSTRINGDEFAULT0100CONSTANTNULLPRODUCTAC_ID_LookupNNN

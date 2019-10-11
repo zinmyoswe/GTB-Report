@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><finrptTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Day_Book_New" shortDesc="Day_Book_New" xsi:noNamespaceSchemaLocation="http://www.infosys.com/finacle/fss/schema/metadata/finrpt/finrpt.xsd">
+	<custValData>
+		<inputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTCRIT" userFriendlyName="FINRPT Criteria Fields">
+					<reposField name="P_vi_TranDate" userFriendlyName="Transaction Date">
+						<description>Transaction Date</description>
+					</reposField>
+					<reposField name="P_vi_SchemeCode" userFriendlyName="Scheme Code">
+						<description>Scheme Code</description>
+					</reposField>
+					<reposField name="P_vi_SchemeType" userFriendlyName="Scheme Type">
+						<description>Scheme Type</description>
+					</reposField>
+					<reposField name="P_vi_currencyType" userFriendlyName="Currency Type">
+						<description>Currency Type</description>
+					</reposField>
+					<reposField name="P_vi_currency" userFriendlyName="Currency Code">
+						<description>Currency Code</description>
+					</reposField>
+					<reposField name="P_vi_BranchCode" userFriendlyName="Branch Code">
+						<description>Branch Code</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</inputRepositories>
+		<outputRepositories/>
+	</custValData>
+	<custReposData>
+		<inputRepositories/>
+		<outputRepositories/>
+	</custReposData>
+	<defPopData>
+		<inputRepositories/>
+		<outputRepositories>
+			<repository name="BANCS" userFriendlyName="Bancs">
+				<reposClass name="FINRPTDEF" userFriendlyName="Default Population Parameters">
+					<reposField name="P_vi_TranDate" userFriendlyName="Transaction Date">
+						<description>Transaction Date</description>
+					</reposField>
+					<reposField name="P_vi_SchemeCode" userFriendlyName="Scheme Code">
+						<description>Scheme Code</description>
+					</reposField>
+					<reposField name="P_vi_SchemeType" userFriendlyName="Scheme Type">
+						<description>Scheme Type</description>
+					</reposField>
+					<reposField name="P_vi_currencyType" userFriendlyName="Currency Type">
+						<description>Currency Type</description>
+					</reposField>
+					<reposField name="P_vi_currency" userFriendlyName="Currency Code">
+						<description>Currency Code</description>
+					</reposField>
+					<reposField name="P_vi_BranchCode" userFriendlyName="Branch Code">
+						<description>Branch Code</description>
+					</reposField>
+				</reposClass>
+			</repository>
+		</outputRepositories>
+	</defPopData>
+</finrptTemplate>
